@@ -13,7 +13,7 @@
 
 1. Установите EMACS ([[https://emacsformacosx.com][MacOS]], [[https://www.addictivetips.com/ubuntu-linux-tips/install-the-emacs-text-editor-on-linux/][Linux]], [[https://www.emacswiki.org/emacs/MsWindowsInstallation][Windows]])
 
-2. Скачайте этот репозиторий и положите его в каталог =~/.emacs.d= (Символ =~= обозначает домашний каталог, в Windows: =C:\Users\user\AppData\Roaming=, В MacOS: =/Users/user=, в Linux: =/home/user=).
+2. Скачайте этот репозиторий (https://github.com/dexager/zettelkasten-emacs/archive/refs/heads/master.zip) и распакуйте его в каталог =~/.emacs.d= (Символ =~= обозначает домашний каталог, в Windows: =C:\Users\user\AppData\Roaming=, В MacOS: =/Users/user=, в Linux: =/home/user=).
 
 3. Для проверки можно воспользоваться командой =cat ~/.emacs.d/README.org=, которая должна вывести содержимое этого файла.
 
