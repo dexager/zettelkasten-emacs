@@ -1,0 +1,270 @@
+#+TITLE: Zettelkasten Emacs Config
+#+PROPERTY: header-args :tangle yes
+
+*ALPHA версия! Может содержать баги!*
+
+Этот проект представляет собой минимальные настройки EMACS для ведения заметок по методу Zettelkasten (org-roam, deft). Мы стараемся сделать процесс начала работы простым и понятным для новичков, в то же время сами используем этот конфиг в своей повседневной работе.
+
+Все настройки редактора хранятся в этом файле. При необходимости можете редактировать его как угодно. Для удобства можете сделать форк на github и редактировать свою версию.
+
+Используйте TAB чтобы открыть интересующий раздел.
+
+** Установка
+
+1. Установите EMACS ([[https://emacsformacosx.com][MacOS]], [[https://www.addictivetips.com/ubuntu-linux-tips/install-the-emacs-text-editor-on-linux/][Linux]], [[https://www.emacswiki.org/emacs/MsWindowsInstallation][Windows]])
+
+2. Скачайте этот репозиторий и положите его в каталог =~/.emacs.d= (Символ =~= обозначает домашний каталог, в Windows: =C:\Users\user\AppData\Roaming=, В MacOS: =/Users/user=, в Linux: =/home/user=).
+
+3. Для проверки можно воспользоваться командой =cat ~/.emacs.d/README.org=, которая должна вывести содержимое этого файла.
+
+4. Запустите EMACS через иконку на рабочем столе.
+
+** Быстрый старт
+
+EMACS исторически имеет собственные сочетания клавиш для многих привычных операций. Выбор каждого -- приучить себя к EMACS или перенастроить EMACS под себя.
+
+В этом разделе приведем минимальный набор команд и сочетаний клавиш, необходимых для начала работы с редактором.
+
+В EMACS принято особое обозначение клавиш-модификаторов. =С-= обозначает необходимость нажатия CTRL, а =M-= -- необходимость нажатия ALT. Например, =C-c= следует читать как "CTRL + C".
+
+Команды EMACS.
+
+| Команда | Описание       |
+|---------+----------------|
+| C-x C-f | Открыть файл   |
+| C-x C-s | Сохранить файл |
+
+Команды Org-roam.
+
+| Команда                  | Описание                                       |
+|--------------------------+------------------------------------------------|
+| M-x org-roam-node-insert | Создать новую заметку и добавить ссылку на нее |
+| M-x org-roam-node-find   | Открыть существующую заметку                   |
+| M-x deft                 | Полнотекстовой поиск по заметкам               |
+| C-c C-g                  | Обновить базу deft                             |
+
+Команды Deft (полнотекстовый поиск по заметкам)
+
+| Команда          | Описание           |
+|------------------+--------------------|
+| M-x deft         | Открыть Deft       |
+| M-x deft-refresh | Обновить базу deft |
+
+** Настройки внешнего вида
+*** Тема
+    
+#+BEGIN_SRC emacs-lisp
+  (use-package spacemacs-theme
+    :defer t
+    :ensure t
+    :init
+      (load-theme 'spacemacs-light t)
+  )
+#+END_SRC
+
+*** Шрифты
+
+#+BEGIN_SRC emacs-lisp
+  (use-package faces
+    :defer t
+    :custom
+    (face-font-family-alternatives
+     '(("Monospace" "courier" "fixed")
+       ("Consolas" "Monaco" "Roboto Mono" "PT Mono" "Terminus" "Monospace")
+       ("Monospace Serif" "CMU Typewriter Text" "Courier 10 Pitch" "Monospace")
+       ("Serif" "CMU Serif" "Georgia" "Cambria" "Times New Roman" "DejaVu Serif" "serif")))
+    :custom-face
+    (variable-pitch ((t (:family "Serif" :height 220))))
+    (fixed-pitch ((t (:family "Monospace Serif" :height 220))))
+    (default ((t (:family "Monospace Serif" :height 220)))))
+#+END_SRC
+
+*** GUI
+
+#+BEGIN_SRC emacs-lisp
+  (use-package tool-bar
+    :ensure nil
+    :config
+    (tool-bar-mode -1)
+    :bind
+    ([s-f9] . tool-bar-mode))
+
+  (use-package scroll-bar
+    :ensure nil
+    :config
+    (scroll-bar-mode -1))
+
+  (use-package menu-bar
+    :ensure nil
+    :config
+    (menu-bar-mode t)
+    :bind
+    ([s-f10] . menu-bar-mode))
+#+END_SRC
+
+*** Mode line
+
+#+BEGIN_SRC emacs-lisp
+  (use-package mood-line
+    :ensure t
+    :hook
+      (after-init . mood-line-mode))
+#+END_SRC
+
+** Настройки EMACS
+*** Глобальные настройки emacs
+
+#+BEGIN_SRC emacs-lisp
+  (use-package emacs
+    :init
+    (org-open-file "~/.emacs.d/README.org")
+    (variable-pitch-mode t)
+    (visual-line-mode t)
+    (delete-other-windows)
+    (add-to-list 'default-frame-alist '(height . 24))
+    (add-to-list 'default-frame-alist '(width . 80))
+    :custom
+    (inhibit-startup-screen t "Don't show splash screen")
+    (indent-tabs-mode nil "Spaces!")
+    (tab-width 4)
+  )
+#+END_SRC
+
+*** Reverse IM
+
+#+BEGIN_SRC emacs-lisp
+  (use-package reverse-im
+    :ensure t
+    :config
+    (reverse-im-activate "russian-computer")
+  )
+#+END_SRC
+
+*** Ivy
+
+#+BEGIN_SRC emacs-lisp
+(use-package smex :ensure t)
+
+(use-package ivy
+  :ensure t
+  :diminish ivy-mode
+  :config
+    (ivy-mode t)
+)
+
+(use-package counsel
+  :ensure t
+  :bind
+  (([remap isearch-forward] . counsel-grep-or-swiper))
+  (([remap execute-extended-command] . counsel-M-x))
+)
+
+(use-package swiper :ensure t)
+#+END_SRC
+
+*** Поиск
+
+#+BEGIN_SRC emacs-lisp
+(use-package ag :ensure t)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package deft
+    :ensure t
+    :custom
+    (deft-directory org-roam-directory)
+    )
+#+END_SRC
+
+*** Dired
+
+#+BEGIN_SRC emacs-lisp
+    (use-package dired
+      :ensure nil
+      :custom (dired-dwim-target t "guess a target directory")
+      :hook
+      (dired-mode . dired-hide-details-mode))
+#+END_SRC
+
+*** Navigation
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ace-window
+    :ensure t
+    :custom
+    (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l) "Use home row for selecting.")
+    (aw-scope 'frame "Highlight only current frame.")
+    :bind
+    ("M-o" . ace-window))
+#+END_SRC
+
+*** Git
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :custom
+    (magit-completing-read-function 'ivy-completing-read "Force Ivy usage.")
+    :bind
+    (:map mode-specific-map
+          :prefix-map magit-prefix-map
+          :prefix "m"
+          (("a" . magit-stage-file) ; the closest analog to git add
+           ("b" . magit-blame)
+           ("B" . magit-branch)
+           ("c" . magit-checkout)
+           ("C" . magit-commit)
+           ("d" . magit-diff)
+           ("D" . magit-discard)
+           ("f" . magit-fetch)
+           ("g" . vc-git-grep)
+           ("G" . magit-gitignore)
+           ("i" . magit-init)
+           ("l" . magit-log)
+           ("m" . magit)
+           ("M" . magit-merge)
+           ("n" . magit-notes-edit)
+           ("p" . magit-pull)
+           ("P" . magit-push)
+           ("r" . magit-reset)
+           ("R" . magit-rebase)
+           ("s" . magit-status)
+           ("S" . magit-stash)
+           ("t" . magit-tag)
+           ("T" . magit-tag-delete)
+           ("u" . magit-unstage)
+           ("U" . magit-update-index))))
+#+END_SRC
+
+** Настройки Org-mode
+*** Основные настройки Org
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :defer t
+    :hook
+      (org-mode . variable-pitch-mode)
+      (org-mode . visual-line-mode)
+    :custom
+      (org-src-tab-acts-natively t)
+      (org-adapt-indentation nil)
+    :custom-face
+      (org-block ((t (:inherit fixed-pitch))))
+      (org-block-begin-line ((t (:inherit fixed-pitch))))
+      (org-block-end-line ((t (:inherit fixed-pitch))))
+      (org-table ((t (:inherit fixed-pitch))))
+      (org-verbatim ((t (:inherit fixed-pitch))))
+  )
+#+END_SRC
+
+*** Org Roam
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-roam
+    :ensure t
+    :init
+    (mkdir org-roam-directory t)
+    (org-roam-setup))
+#+END_SRC
+
+** Заключение
