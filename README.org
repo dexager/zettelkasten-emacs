@@ -67,6 +67,7 @@ EMACS исторически имеет собственные сочетани�
 #+BEGIN_SRC emacs-lisp
   (use-package faces
     :defer t
+    :ensure nil
     :custom
     (face-font-family-alternatives
      '(("Monospace" "courier" "fixed")
@@ -74,9 +75,9 @@ EMACS исторически имеет собственные сочетани�
        ("Monospace Serif" "CMU Typewriter Text" "Courier 10 Pitch" "Monospace")
        ("Serif" "CMU Serif" "Georgia" "Cambria" "Times New Roman" "DejaVu Serif" "serif")))
     :custom-face
-    (variable-pitch ((t (:family "Serif" :height 220))))
-    (fixed-pitch ((t (:family "Monospace Serif" :height 220))))
-    (default ((t (:family "Monospace Serif" :height 220)))))
+    (variable-pitch ((t (:family "Serif" :height 140))))
+    (fixed-pitch ((t (:family "Monospace Serif" :height 140))))
+    (default ((t (:family "Monospace Serif" :height 140)))))
 #+END_SRC
 
 *** GUI
