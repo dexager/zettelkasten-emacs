@@ -264,8 +264,9 @@ EMACS исторически имеет собственные сочетани�
   (use-package org-roam
     :ensure t
     :init
-    (mkdir org-roam-directory t)
-    (org-roam-setup))
+    (setq org-roam-v2-ack t)
+    (setq org-roam-directory "~/org-roam")
+    (mkdir org-roam-directory t))
 #+END_SRC
 
 ** Заключение
