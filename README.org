@@ -281,4 +281,12 @@ EMACS исторически имеет собственные сочетани�
     (mkdir org-roam-directory t))
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+  (defun org-roam-insert-id (&optional force)
+    "Create an ID and DATE for the current entry."
+    (interactive "P")
+    (org-id-get (point) 'create)
+    (org-entry-put (point) "DATE" (format-time-string "%Y-%m-%d")))
+#+END_SRC
+
 ** Заключение
