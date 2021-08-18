@@ -289,4 +289,15 @@ EMACS исторически имеет собственные сочетани�
     (org-entry-put (point) "DATE" (format-time-string "%Y-%m-%d")))
 #+END_SRC
 
+*** Org Crypt
+
+https://orgmode.org/manual/Org-Crypt.html
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-crypt
+    :init
+    (org-crypt-use-before-save-magic)
+    )
+#+END_SRC
+
 ** Заключение
