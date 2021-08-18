@@ -172,6 +172,7 @@ EMACS исторически имеет собственные сочетани�
 #+BEGIN_SRC emacs-lisp
   (use-package deft
     :ensure t
+    :after org-roam
     :custom
     (deft-directory org-roam-directory)
     )
