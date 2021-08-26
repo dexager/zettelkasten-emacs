@@ -325,8 +325,7 @@ https://orgmode.org/manual/Org-Crypt.html
 #+BEGIN_SRC emacs-lisp
   (use-package org-crypt
     :init
-    (org-crypt-use-before-save-magic)
-    )
+    (org-crypt-use-before-save-magic))
 *** Org Journal
 
 #+BEGIN_SRC emacs-lisp
