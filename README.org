@@ -346,6 +346,14 @@ https://orgmode.org/manual/Org-Crypt.html
   (org-id-method "ts"))
 #+END_SRC
 
+*** Org src
+
+#+BEGIN_SRC emacs-lisp
+(use-package org-src
+  :custom
+  (org-edit-src-content-indentation 0))
+#+END_SRC
+
 #+END_SRC
 
 *** Org-transclusion
