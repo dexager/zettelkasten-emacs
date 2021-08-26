@@ -22,5 +22,16 @@
   :custom
   (use-package-enable-imenu-support t))
 
+(use-package quelpa
+  :ensure t
+  :defer t
+  :custom
+  (quelpa-update-melpa-p nil "Don't update the MELPA git repo."))
+
+(use-package quelpa-use-package
+  :init
+  (setq quelpa-use-package-inhibit-loading-quelpa t)
+  :ensure t)
+
 (require 'ob-tangle)
 (org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
