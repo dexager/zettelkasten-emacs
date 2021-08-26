@@ -152,8 +152,7 @@ EMACS исторически имеет собственные сочетани�
   :ensure t
   :diminish ivy-mode
   :config
-    (ivy-mode t)
-)
+    (ivy-mode t))
 
 (use-package counsel
   :ensure t
