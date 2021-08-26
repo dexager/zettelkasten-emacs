@@ -54,12 +54,11 @@ EMACS исторически имеет собственные сочетани�
 *** Тема
     
 #+BEGIN_SRC emacs-lisp
-  (use-package spacemacs-theme
-    :defer t
-    :ensure t
-    :init
-      (load-theme 'spacemacs-light t)
-  )
+(use-package spacemacs-theme
+  :defer t
+  :ensure t
+  :init
+    (load-theme 'spacemacs-light t))
 #+END_SRC
 
 *** Шрифты
