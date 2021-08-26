@@ -248,6 +248,35 @@ EMACS исторически имеет собственные сочетани�
   (use-package yasnippet-snippets :ensure t)
 #+END_SRC
 
+*** Проверка орфографии
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ispell
+    :defer t
+    :custom
+    (ispell-local-dictionary-alist
+     '(("russian"
+        "[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюяіїєґ’A-Za-z]"
+        "[^АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюяіїєґ’A-Za-z]"
+        "[-']"  nil ("-d" "ru_RU,en_US") nil utf-8)))
+    (ispell-program-name "hunspell")
+    (ispell-dictionary "russian")
+    (ispell-really-aspell nil)
+    (ispell-really-hunspell t)
+    (ispell-encoding8-command t)
+    (ispell-silently-savep t))
+  
+  (use-package flyspell
+    :defer t
+    :custom
+    (flyspell-delay 1))
+  
+  (use-package flyspell-correct-ivy
+    :ensure t
+    :bind (:map flyspell-mode-map
+                ("C-c $" . flyspell-correct-at-point)))
+#+END_SRC
+
 ** Настройки Org-mode
 *** Основные настройки Org
 
@@ -257,6 +286,7 @@ EMACS исторически имеет собственные сочетани�
     :hook
       (org-mode . variable-pitch-mode)
       (org-mode . visual-line-mode)
+      (org-mode . flyspell-mode)
     :custom
       (org-src-tab-acts-natively t)
       (org-adapt-indentation nil)
