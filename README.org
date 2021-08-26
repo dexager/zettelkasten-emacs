@@ -327,6 +327,17 @@ https://orgmode.org/manual/Org-Crypt.html
     :init
     (org-crypt-use-before-save-magic)
     )
+*** Org Journal
+
+#+BEGIN_SRC emacs-lisp
+(use-package org-journal
+  :ensure t
+  :custom
+  (org-journal-dir "~/org-roam/daily/")
+  (org-journal-file-format "%Y%m%d.org")
+  (org-journal-time-format ""))
+#+END_SRC
+
 #+END_SRC
 
 *** Org-transclusion
