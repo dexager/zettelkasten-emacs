@@ -354,6 +354,28 @@ https://orgmode.org/manual/Org-Crypt.html
   (org-edit-src-content-indentation 0))
 #+END_SRC
 
+*** Org Babel
+
+#+BEGIN_SRC emacs-lisp
+(use-package ob-core
+  :init
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (latex . t)
+     (python . t)
+     (plantuml . t)
+     (dot . t)
+     (js . t)
+     (shell . t)))
+
+  (setq org-babel-default-header-args '((:session . "*shell*")
+                                  (:results . "silent")
+                                  (:exports . "code")
+                                  (:cache . "no")
+                                  (:noweb . "no")
+                                  (:hlines . "no")
+                                  (:tangle . "no"))))
 #+END_SRC
 
 *** Org-transclusion
