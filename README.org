@@ -329,4 +329,13 @@ https://orgmode.org/manual/Org-Crypt.html
     )
 #+END_SRC
 
+*** Org-transclusion
+
+#+BEGIN_SRC emacs-lisp
+(use-package org-transclusion
+    :defer t
+    :quelpa
+    (org-transclusion :repo "nobiot/org-transclusion" :fetcher github))
+#+END_SRC
+
 ** Заключение
