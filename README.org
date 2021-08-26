@@ -295,8 +295,7 @@ EMACS исторически имеет собственные сочетани�
       (org-block-begin-line ((t (:inherit fixed-pitch))))
       (org-block-end-line ((t (:inherit fixed-pitch))))
       (org-table ((t (:inherit fixed-pitch))))
-      (org-verbatim ((t (:inherit fixed-pitch))))
-  )
+      (org-verbatim ((t (:inherit fixed-pitch)))))
 #+END_SRC
 
 *** Org Roam
