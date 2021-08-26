@@ -174,8 +174,7 @@ EMACS исторически имеет собственные сочетани�
     :ensure t
     :after org-roam
     :custom
-    (deft-directory org-roam-directory)
-    )
+    (deft-directory org-roam-directory))
 #+END_SRC
 
 *** Dired
