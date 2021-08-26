@@ -115,19 +115,19 @@ EMACS исторически имеет собственные сочетани�
 *** Глобальные настройки emacs
 
 #+BEGIN_SRC emacs-lisp
-  (use-package emacs
-    :init
-    (org-open-file "~/.emacs.d/README.org")
-    (variable-pitch-mode t)
-    (visual-line-mode t)
-    (delete-other-windows)
-    (add-to-list 'default-frame-alist '(height . 24))
-    (add-to-list 'default-frame-alist '(width . 80))
-    :custom
-    (inhibit-startup-screen t "Don't show splash screen")
-    (indent-tabs-mode nil "Spaces!")
-    (tab-width 4)
-  )
+(use-package emacs
+  :init
+  (org-open-file "~/.emacs.d/README.org")
+  (variable-pitch-mode t)
+  (visual-line-mode t)
+  (delete-other-windows)
+  (add-to-list 'default-frame-alist '(height . 24))
+  (add-to-list 'default-frame-alist '(width . 80))
+  :custom
+  (inhibit-startup-screen t "Don't show splash screen")
+  (indent-tabs-mode nil "Spaces!")
+  (tab-width 4))
+
 #+END_SRC
 
 *** Reverse IM
