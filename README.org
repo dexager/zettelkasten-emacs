@@ -128,6 +128,10 @@ EMACS исторически имеет собственные сочетани�
   (indent-tabs-mode nil "Spaces!")
   (tab-width 4))
 
+(use-package cus-edit
+  :init
+  (setq custom-file "~/.emacs.d/custom.el")
+  (load custom-file))
 #+END_SRC
 
 *** Reverse IM
